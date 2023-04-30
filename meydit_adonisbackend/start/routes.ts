@@ -26,14 +26,13 @@ Route.get('/', async () => {
 })
 
 // Consumer data routes
-Route.post('/consumersignup', ({ response }) => {
-  return response.redirect('/consumer');
-}).as("consumers.signup");
+Route.post('/consumersignup', 'ConsumersController.store').as("consumers.signup");
 
-Route.get('/consumers', async () => {
-  const consumers = await Database.from("consumers").select("*");
-  return consumers;
-}).as("consumers");
+// Route.get('/consumers', async () => {
+//   const consumers = await Database.from("consumers").select("*");
+//   return consumers;
+// }).as("consumers");
+Route.get('/consumers', 'ConsumersController.index').as("consumers");
 
 Route.patch('/consumers:id', ({ params }) => {
   return {params};
