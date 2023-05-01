@@ -26,28 +26,12 @@ Route.get('/', async () => {
 })
 
 // Consumer data routes
-Route.post('/consumersignup', 'ConsumersController.store').as("consumers.signup");
-
-// Route.get('/consumers', async () => {
-//   const consumers = await Database.from("consumers").select("*");
-//   return consumers;
-// }).as("consumers");
-Route.get('/consumers', 'ConsumersController.index').as("consumers");
-
-Route.patch('/consumers:id', ({ params }) => {
-  return {params};
-}).where("id", {
-    match: /^[0-9]+$/,
-    cast: (id) => Number(id),
-}).as("consumer_update");
-
-Route.delete('/consumers:id', ({ params }) => {
-  return {params};
-}).where("id", {
-    match: /^[0-9]+$/,
-    cast: (id) => Number(id),
-}).as("consumer_delete");
-
+// Route.post('/consumersignup', 'ConsumersController.store').as("consumers.store");
+// Route.get('/consumers', 'ConsumersController.index').as("consumers");
+// Route.get('/consumers/:id','ConsumersController.edit').as("consumer.edit");
+//Route.patch('/con/:id', "ConsumersController.update").as("consumer.update");
+// Route.delete('/consumers:slug', "ConsumersController.destroy").as("consume.delete");
+Route.resource("consumers", "ConsumersController").as("consumers").apiOnly();
 
 // Consumer posts routes
 Route.post('/posts', ({ response }) => {
