@@ -23,8 +23,11 @@ import Database from '@ioc:Adonis/Lucid/Database'
 
 Route.get('/', async () => {
   return { hello: 'world' }
-})
+});
 
+Route.post('/auth/register', 'AuthController.register').as('auth.register')
+Route.post('/auth/login', 'AuthController.login').as('auth.login')
+Route.get('/auth/logout', 'AuthController.logout').as('auth.logout')
 // Consumer data routes
 // Route.post('/consumersignup', 'ConsumersController.store').as("consumers.store");
 // Route.get('/consumers', 'ConsumersController.index').as("consumers");
@@ -32,6 +35,7 @@ Route.get('/', async () => {
 //Route.patch('/con/:id', "ConsumersController.update").as("consumer.update");
 // Route.delete('/consumers:slug', "ConsumersController.destroy").as("consume.delete");
 Route.resource("consumers", "ConsumersController").as("consumers").apiOnly();
+Route.resource("users", "UsersController").as("users").apiOnly();
 
 // Consumer posts routes
 Route.post('/posts', ({ response }) => {
