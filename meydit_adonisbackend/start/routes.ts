@@ -29,67 +29,53 @@ Route.post('/auth/register', 'AuthController.register').as('auth.register')
 Route.post('/auth/login', 'AuthController.login').as('auth.login')
 Route.get('/auth/logout', 'AuthController.logout').as('auth.logout')
 // Consumer data routes
-// Route.post('/consumersignup', 'ConsumersController.store').as("consumers.store");
-// Route.get('/consumers', 'ConsumersController.index').as("consumers");
-// Route.get('/consumers/:id','ConsumersController.edit').as("consumer.edit");
-//Route.patch('/con/:id', "ConsumersController.update").as("consumer.update");
-// Route.delete('/consumers:slug', "ConsumersController.destroy").as("consume.delete");
-Route.resource("consumers", "ConsumersController").as("consumers").apiOnly();
-Route.resource("users", "UsersController").as("users").apiOnly();
+//Route.resource("consumers", "ConsumersController").as("consumers").apiOnly();
+Route.resource("users", "UsersController")
+.as("users").apiOnly().middleware({
+show: ["auth"],
+edit: ["auth"],
+update: ["auth"],
+create: ["auth"],
+store: ["auth"],
+destroy: ["auth"]
+});
+Route.resource("posts", "PostsController")
+.as("userposts").apiOnly().middleware({
+show: ["auth"],
+edit: ["auth"],
+update: ["auth"],
+create: ["auth"],
+store: ["auth"],
+destroy: ["auth"]
+});
 
+
+Route.resource("makers", "MakersController")
+.as("maker").apiOnly().middleware({
+show: ["auth"],
+edit: ["auth"],
+update: ["auth"],
+create: ["auth"],
+destroy: ["auth"]
+});  
+
+
+Route.resource("quotes", "QuotesController")
+.as("quote_post").apiOnly().middleware({
+show: ["auth"],
+edit: ["auth"],
+update: ["auth"],
+create: ["auth"],
+store: ["auth"],
+destroy: ["auth"]
+});
+
+Route.post('/user/post', 'PostsController.store').as('posts.user')
+Route.get('/user/post/', 'PostsController.index').as('posts.users')
+Route.get('/user/post/:id', 'PostsController.show').as('posts.singleuser')
 // Consumer posts routes
-Route.post('/posts', ({ response }) => {
-  return response.redirect('/posts');
-}).as("consumers.post");
 
-Route.patch('/posts:id', ({ params }) => {
-  return {params};
-}).where("id", {
-    match: /^[0-9]+$/,
-    cast: (id) => Number(id),
-}).as("post_update");
-
-Route.delete('/posts:id', ({ params }) => {
-  return {params};
-}).where("id", {
-    match: /^[0-9]+$/,
-    cast: (id) => Number(id),
-}).as("post_delete");
-
-
-// Maker(tailor) data
-Route.post('/tailorsignup', ({ response }) => {
-  return response.redirect('/tailorsignup');
-}).as("maker.signup");
-
-Route.get('/tailors', async () => {
-  const consumers = await Database.from("tailors").select("*");
-  return consumers;
-}).as("makers");
-
-Route.patch('/tailors:id', ({ params }) => {
-  return {params};
-}).where("id", {
-    match: /^[0-9]+$/,
-    cast: (id) => Number(id),
-}).as("maker_update");
-
-Route.delete('/tailors:id', ({ params }) => {
-  return {params};
-}).where("id", {
-    match: /^[0-9]+$/,
-    cast: (id) => Number(id),
-}).as("maker_delete");
-
- 
 // Quotes table
-Route.post('/tailorquotes', ({ response }) => {
-  return response.redirect('/tailorquote');
-}).as("maker.quote");
 
-Route.get('/quotes', async () => {
-  const consumers = await Database.from("tailorquotes").select("*");
-  return consumers;
-}).as("makersquote");
 
 

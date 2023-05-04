@@ -1,5 +1,6 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import User from 'App/Models/User'
+import CreateUserValidator from 'App/Validators/CreateUserValidator';
 
 export default class UsersController {
   public async index({}: HttpContextContract) {
@@ -7,31 +8,28 @@ export default class UsersController {
     return users;
   }
 
-  public async show({params }) {
-    const users = await User.findBy('id', params.id);
-    return users;
-  }
-
-  public async store({response, request}) {
-      try {
-          const payload = await request.validate(CreateConsumerValidator);
-          User.create(payload)
-          return payload;
-        } catch (error) {
-          response.badRequest(error.messages)
-        }
+  public async show({params}) {
+    const users = await User
+    .query()
+    .preload('posts', (profileQuery) => {
+      profileQuery.where('userId', params.id)
+    })
+    const user = users.filter((x, i)=> {
+      return x.id == params.id
+    })
+    return user;
   }
 
   public async update({ request, response, params }) {
-      const payload = await request.validate(CreateConsumerValidator);
+      const payload = await request.validate(CreateUserValidator);
       await User.query().where('id', params.id).update(payload);
       return payload;
   }
 
   public async destroy({ response, params }) {
-      const User = await User.findBy('id', params.id);
-      if(consumer){
-          User.delete()
+      const user = await User.findBy('id', params.id);
+      if(user){
+          user.delete()
       }
       return response.send("deleted successfully");
   }
