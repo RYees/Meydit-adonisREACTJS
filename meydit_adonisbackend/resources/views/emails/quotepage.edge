@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+        justify-content: center
+    }
+    .btn{
+        background: #664F39;
+        color: white;
+        padding: 15px;
+        border-radius: 10px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 1.5rem;
+        border: none;
+    }
+
+</style>
+<body>
+    <h1>Hello</h1>
+    <p><strong>Offered price:</strong> {{ payload.price }}</p>
+    <p>{{ payload.comments }}</p>
+    <h2> Tailor's previous works </h2>
+    <p>Tailor Name: {{ postuserImages }}</p>
+    {{--  <img src={{ postuserImages }}/>  --}}
+    
+    <p>
+     <button class="btn">Approve</button>
+    </p>
+</body>
+</html>

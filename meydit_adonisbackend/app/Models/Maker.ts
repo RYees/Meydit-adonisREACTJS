@@ -29,6 +29,9 @@ export default class Maker extends BaseModel {
   public photo: string
 
   @column()
+  public images: string
+
+  @column()
   public email: string
 
   @column({ serializeAs: null })

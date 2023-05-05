@@ -12,14 +12,14 @@ export default class PostsController {
   }
 
   public async show({params}) {
-    const users = await Post
+    const posts = await Post
       .query()
       .preload('user')
     
-    const user = users.filter((x, i)=> {
+    const post = posts.filter((x, i)=> {
       return x.id == params.id
     })
-    return user;
+    return post;
   }
 
   public async store({response, request}) {
