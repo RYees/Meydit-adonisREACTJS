@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import React, {useEffect} from 'react'
+import React from 'react'
 import Link from 'next/link'
 import logo from '../public/images/logo.png'
 import banner from '../public/images/banner.jpg'
