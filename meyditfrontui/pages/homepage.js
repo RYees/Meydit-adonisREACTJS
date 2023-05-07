@@ -132,7 +132,7 @@ const HomePage = () => {
        </div>
 
        <div className='flex flex-col justify-center'>
-        <Image src={logo} width={49} className='mx-auto' />
+        <Image src={logo} alt='home-banner' width={49} className='mx-auto' />
         <p className='mx-auto font-bold text-xl'>Meydit - Bridge between tailor and consumer</p>
        </div>
 

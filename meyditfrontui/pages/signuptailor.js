@@ -2,6 +2,7 @@ import React,{useState} from "react";
 import { CustomButton, FormField, Loader } from '../components';
 import logo from '../public/images/logo.png'
 import Image from "next/image";
+import axiosLib from "axios";
 
 const Signup = () => {
     const [form, setForm] = useState({
@@ -14,6 +15,34 @@ const Signup = () => {
         email: '',
         password: ''
       });
+
+      const axios = axiosLib.create({
+        baseURL: "http://127.0.0.1:3333"
+      });
+
+      const maker = (e) => {
+        e.preventDefault()
+          console.log('commit');
+          console.log("run", form);
+          //let token = localStorage.getItem("token");
+          axios
+            .post("/makers", {
+                firstname: form.firstname,
+                lastname: form.lastname,
+                phonenumber: form.phonenumber,
+                postcode: form.postcode,
+                state: form.state,
+                photo: form.photo,
+                email: form.email,
+                password: form.password,
+                amount: 0
+            })
+            .then((response) => {
+              response;
+              //localStorage.setItem("token", token);
+              console.log(response);
+            });
+      }
     
       const handleFormFieldChange = (fieldName, e) => {
         setForm({ ...form, [fieldName]: e.target.value })
@@ -27,7 +56,7 @@ const Signup = () => {
     <>
     <div className="content bg-[#FDF5EF] h-full">
         <div className="md:mx-56">
-            <form onSubmit={handleSubmit} className="w-full  flex flex-col gap-[30px]">
+            <form onSubmit={maker} className="w-full  flex flex-col gap-[30px]">
                 <div className="flex flex-wrap gap-[40px] mt-16">
                 <FormField 
                     labelName="Your first Name *"
@@ -60,7 +89,7 @@ const Signup = () => {
                 </div>
 
                 <div className="w-full flex justify-start items-center p-4 bg-[#664F39] h-[120px] rounded-[10px]">
-                <Image src={logo} alt="" className="w-[40px] h-[40px] object-contain"/>
+                <Image src={logo} alt="ad" className="w-[40px] h-[40px] object-contain"/>
                 <h4 className="font-epilogue font-bold text-[25px] text-white ml-[20px]">Wear Tailored Made Cloth and Be Stylish!</h4>
                 </div>
 

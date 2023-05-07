@@ -2,8 +2,10 @@ import React,{useState} from "react";
 import { CustomButton, FormField, Loader } from '../components';
 import logo from '../public/images/logo.png'
 import Image from "next/image";
+import axiosLib from "axios";
 
-const Quote = () => {
+const Quote = (data) => {
+  //console.log("quote", data.data.id);
     const [form, setForm] = useState({
         makerId: '',
         postId: '',
@@ -11,6 +13,28 @@ const Quote = () => {
         comments: '', 
         email: '',
        });
+
+       const axios = axiosLib.create({
+        baseURL: "http://127.0.0.1:3333"
+      });
+
+      const quote = (e) => {
+        e.preventDefault()
+          console.log('commit');
+          axios
+            .post("/quotes", {
+                price: form.price,
+                comments: form.comments,
+                email: form.email,
+                makerId: 1, // fecth from local storage
+                postId: data.data.id
+            })
+            .then((response) => {
+              response;
+              //localStorage.setItem("token", token);
+              console.log(response);
+            });
+      }
     
       const handleFormFieldChange = (fieldName, e) => {
         setForm({ ...form, [fieldName]: e.target.value })
@@ -22,10 +46,11 @@ const Quote = () => {
     
   return (
     <>
-    <div className="content bg-[#FDF5EF] h-full">
+    <div className="content bg-[#FDF5EF] h-full border">
         <div className="md:mx-56">
-            <form onSubmit={handleSubmit} className="w-full  flex flex-col gap-[30px]">
-                <div className="flex flex-wrap gap-[40px] mt-16">
+           <h1 className="uppercase text-[#664F39] flex justify-center text-5xl">Send Quotation</h1>
+            <form onSubmit={quote} className="w-full  flex flex-col gap-[30px]">
+                <div className="flex flex-col gap-[40px] mt-16">
                 <FormField 
                     labelName="Offer Price *"
                     placeholder="put your offer price"
@@ -52,7 +77,7 @@ const Quote = () => {
                 <div className="flex justify-center items-center mt-[40px] mb-10">
                     <CustomButton 
                     btnType="submit"
-                    title="Post"
+                    title="Quote"
                     styles="bg-[#664F39]"
                     />
                 </div>

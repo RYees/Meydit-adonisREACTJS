@@ -1,10 +1,32 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState, Component} from 'react'
 import {FiSearch} from 'react-icons/fi'
-import DisplayCard from '../components/DisplayCard'
-import { CustomButton, FormField, Loader } from '../components';
+import DisplayCard from '../../components/DisplayCard'
+//import { CustomButton, FormField, Loader } from '../../components';
 import Link from 'next/link'
+import axios from 'axios'
+import { useRouter } from "next/router";
 
-const Jobs = () => {
+const endpoint ='http://127.0.0.1:3333/posts';
+export async function getServerSideProps(){
+    const res = await fetch(endpoint);
+    const data = await res.json();
+    return {
+        props: {
+            data
+        }
+    }
+}
+const Jobs = ({data}) => {
+    const router = useRouter();
+    console.log("nmn", data[0].quotes.length)
+    const[users, fetchUsers] = useState([]);
+
+    const fetchEvents = async () =>{
+        const val = await axios.get("http://127.0.0.1:3333/users");
+        console.log("sinnmn", val)
+        fetchUsers(val)
+        console.log("lopo",users)
+    }
   return (
 <> 
     <div className='bg-[#FDF5EF] h-full'>
@@ -59,7 +81,12 @@ const Jobs = () => {
                     <div className='-mt-8 ml-1'><FiSearch size={30} className='text-white rotate-90'/></div>
                 </div>
            </div>
-           <DisplayCard/>
+           {/* <DisplayCard/> */}
+           <div marginX="20" marginTop={10}>
+                {data.map((value, index) => {
+                    return <DisplayCard data={value} key={index}></DisplayCard>;
+                })}
+            </div>
         </div>
 
      </div>

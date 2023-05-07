@@ -31,7 +31,7 @@ export default class AuthController {
         const { email, password } = request.only(['email', 'password'])
         try {
             await auth.attempt(email, password)
-            return response.send("logged in")
+            return auth
         } catch(error){
             //session.flash('errors', 'Email or password is incorrect')
             return response.send(error)
@@ -42,6 +42,6 @@ export default class AuthController {
 
     public async logout({ response, auth }: HttpContextContract) {
         await auth.logout()
-        return response.status(200)
+        return auth
     }
 }

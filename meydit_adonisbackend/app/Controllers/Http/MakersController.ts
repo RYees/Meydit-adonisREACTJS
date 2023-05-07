@@ -25,30 +25,35 @@ export default class MakersController {
   public async store({response, request}) {
     const payload = await request.validate(CreateMakerValidator);
     try {  
-      if(!Maker.create(payload)){
-        response.send("email duplicated")
-      }  {
-        return payload;
-      }   
+        await Maker.create(payload)
+        return payload;       
         
-        
-      } catch (error) {
-        response.badRequest(error.messages)
-      }
+    } catch (error) {
+      return response.send(error)
+    }
   }
 
-  public async update({ request, params }) {
-    const payload = await request.validate(CreateMakerValidator);
-    await Maker.query().where('id', params.id).update(payload);
-    return payload;
+  public async update({ request, response, params }) {
+    try {
+      const payload = await request.validate(CreateMakerValidator);
+      await Maker.query().where('id', params.id).update(payload);
+      return payload;
+    } catch (error) {
+      return response.send(error)
+    }
+    
   }
 
   public async destroy({ response, params }) {
+    try{
       const user = await Maker.findBy('id', params.id);
       if(user){
           user.delete()
       }
-      return response.send("deleted successfully");
+      return response.status(200);
+    } catch (error) {
+      return response.send(error)
+    }
   }
 
   public async edit({}: HttpContextContract) {}

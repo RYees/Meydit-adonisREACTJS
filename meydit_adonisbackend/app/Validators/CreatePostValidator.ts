@@ -26,9 +26,11 @@ export default class CreatePostValidator {
   public schema = schema.create({
     userId: schema.number(),
     clothingtype: schema.string(),
-    photo: schema.string.optional(),
+    // images: schema.string(),
     description: schema.string(),
+    //status: schema.string(),
     budget: schema.number(),
+    images: schema.file(),
   })
 
   /**

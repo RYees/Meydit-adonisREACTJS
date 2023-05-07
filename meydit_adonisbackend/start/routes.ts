@@ -31,44 +31,48 @@ Route.get('/auth/logout', 'AuthController.logout').as('auth.logout')
 // Consumer data routes
 //Route.resource("consumers", "ConsumersController").as("consumers").apiOnly();
 Route.resource("users", "UsersController")
-.as("users").apiOnly().middleware({
-show: ["auth"],
-edit: ["auth"],
-update: ["auth"],
-create: ["auth"],
-store: ["auth"],
-destroy: ["auth"]
-});
+.as("users").apiOnly()
+// .middleware({
+// show: ["auth"],
+// edit: ["auth"],
+// update: ["auth"],
+// create: ["auth"],
+// store: ["auth"],
+// destroy: ["auth"]
+//});
 Route.resource("posts", "PostsController")
-.as("userposts").apiOnly().middleware({
-show: ["auth"],
-edit: ["auth"],
-update: ["auth"],
-create: ["auth"],
-store: ["auth"],
-destroy: ["auth"]
-});
+.as("userposts").apiOnly()
+// .middleware({
+// show: ["auth"],
+// edit: ["auth"],
+// update: ["auth"],
+// create: ["auth"],
+// store: ["auth"],
+// destroy: ["auth"]
+// });
 
 
 Route.resource("makers", "MakersController")
-.as("maker").apiOnly().middleware({
-show: ["auth"],
-edit: ["auth"],
-update: ["auth"],
-create: ["auth"],
-destroy: ["auth"]
-});  
+.as("maker").apiOnly()
+// .middleware({
+// show: ["auth"],
+// edit: ["auth"],
+// update: ["auth"],
+// create: ["auth"],
+// destroy: ["auth"]
+// });  
 
 
 Route.resource("quotes", "QuotesController")
-.as("quote_post").apiOnly().middleware({
-show: ["auth"],
-edit: ["auth"],
-update: ["auth"],
-create: ["auth"],
-store: ["auth"],
-destroy: ["auth"]
-});
+.as("quote_post").apiOnly()
+// .middleware({
+// show: ["auth"],
+// edit: ["auth"],
+// update: ["auth"],
+// create: ["auth"],
+// store: ["auth"],
+// destroy: ["auth"]
+// });
 
 Route.post('/user/post', 'PostsController.store').as('posts.user')
 Route.get('/user/post/', 'PostsController.index').as('posts.users')

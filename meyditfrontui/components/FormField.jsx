@@ -1,6 +1,6 @@
 import React from 'react'
 
-const FormField = ({ labelName, placeholder, inputType, isTextArea, isSelectOption, value, handleChange }) => {
+const FormField = ({ labelName, placeholder, inputType, name, isTextArea, isSelectOption, value, handleChange }) => {
   return (
     <label className="flex-1 w-full flex flex-col">
       {labelName && (
@@ -13,7 +13,7 @@ const FormField = ({ labelName, placeholder, inputType, isTextArea, isSelectOpti
           onChange={handleChange}
           rows={10}
           placeholder={placeholder}
-          className="py-[10px] sm:px-[25px] px-[15px] outline-none border-[1px] border-[#3a3a43] bg-transparent font-epilogue text-white text-[14px] placeholder:text-[#4b5264] rounded-[10px] sm:min-w-[300px]"
+          className="py-[10px] sm:px-[25px] px-[15px] outline-none mb-4 border-[1px] border-[#3a3a43] bg-transparent font-epilogue text-[14px] placeholder:text-[#4b5264] rounded-[10px] sm:min-w-[300px]"
         />
       ) : (
         <input 
@@ -21,9 +21,10 @@ const FormField = ({ labelName, placeholder, inputType, isTextArea, isSelectOpti
           value={value}
           onChange={handleChange}
           type={inputType}
+          name={name}
           step="0.1"
           placeholder={placeholder}
-          className="py-[10px] sm:px-[25px] px-[15px] outline-none border-[1px] border-[#3a3a43] bg-transparent font-epilogue text-white text-[14px] placeholder:text-[#4b5264] rounded-[10px] sm:min-w-[300px]"
+          className="py-[10px] sm:px-[25px] px-[15px] outline-none mb-4 border-[1px] border-[#3a3a43] bg-transparent font-epilogue text-[14px] placeholder:text-[#4b5264] rounded-[10px] sm:min-w-[300px]"
         />
       )}
 
