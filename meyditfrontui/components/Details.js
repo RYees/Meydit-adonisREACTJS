@@ -6,7 +6,7 @@ import Quote from './Quote'
 // import { useState } from "react";
 // import { items } from "../public/Items.json";
 // import { Carousel } from "react-bootstrap";
-import tailor from '../public/images/tailor.PNG'
+import dress6 from '../public/images/dress6.png'
 //import "bootstrap/dist/css/bootstrap.min.css";
 //import styles from "../styles/Bootstrap.module.css";
 import { useRouter } from "next/router";
@@ -31,7 +31,7 @@ const Details = () => {
           ))}
         </Carousel> */}
         <div className='bg-[#000]'>
-          <Image src={tailor}  alt='home-banner'  className='xl:h-[35rem] mt-5'/>
+          <Image src={dress6}  alt='home-banner'  className='xl:h-[35rem] mt-5'/>
         </div>
         
         <div className='md:flex md:justify-between'>
