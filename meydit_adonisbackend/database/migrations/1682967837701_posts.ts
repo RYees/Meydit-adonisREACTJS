@@ -8,9 +8,10 @@ export default class extends BaseSchema {
       table.increments('id')
       table.integer('user_id').unsigned().references('id').inTable('users')
       table.string('clothingtype')
-      table.string('images')
+      table.string('polyimages')
       table.string('description')
-      table.string('budget')
+      table.string('budget') 
+      table.string('status')
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */

@@ -25,12 +25,15 @@ Route.get('/', async () => {
   return { hello: 'world' }
 });
 
-Route.post('/auth/register', 'AuthController.register').as('auth.register')
+Route.post('/auth/consumers', 'AuthController.register').as('auth.register')
 Route.post('/auth/login', 'AuthController.login').as('auth.login')
 Route.get('/auth/logout', 'AuthController.logout').as('auth.logout')
+// Route.post('/consumers/post', 'PostsController.store').as('posts.user')
+// Route.get('/consumers/post/', 'PostsController.index').as('posts.users')
+// Route.get('/consumers/post/:id', 'PostsController.show').as('posts.singleuser')
 // Consumer data routes
 //Route.resource("consumers", "ConsumersController").as("consumers").apiOnly();
-Route.resource("users", "UsersController")
+Route.resource("consumers", "UsersController")
 .as("users").apiOnly()
 // .middleware({
 // show: ["auth"],
@@ -74,9 +77,7 @@ Route.resource("quotes", "QuotesController")
 // destroy: ["auth"]
 // });
 
-Route.post('/user/post', 'PostsController.store').as('posts.user')
-Route.get('/user/post/', 'PostsController.index').as('posts.users')
-Route.get('/user/post/:id', 'PostsController.show').as('posts.singleuser')
+
 // Consumer posts routes
 
 // Quotes table
