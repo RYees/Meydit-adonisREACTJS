@@ -3,7 +3,7 @@ import {FiSearch} from 'react-icons/fi'
 import DisplayCard from '../../components/DisplayCard'
 //import { CustomButton, FormField, Loader } from '../../components';
 import Link from 'next/link'
-import axios from 'axios'
+import axiosLib from "axios";
 import { useRouter } from "next/router";
 
 const endpoint ='http://127.0.0.1:3333/posts';
@@ -18,15 +18,72 @@ export async function getServerSideProps(){
 }
 const Jobs = ({data}) => {
     const router = useRouter();
-    console.log("nmn", data[0].quotes.length)
-    const[users, fetchUsers] = useState([]);
+    //console.log("nmn", data[0].quotes.length)
+    const [searchtype, setClothingType] = useState("");
+    const [search, setByLocation] = useState("Australia")
+    const [datas, setData] = useState(data);
+    //setData(data);
+    // console.log("couch", data)
+    // console.log("londa", datas)
+    const [form, setForm] = useState({
+        firstname: '',
+        lastname: '',
+        phonenumber: '',
+        postcode: '', 
+        state: '',
+        photo: '',
+        email: '',
+        password: ''
+      });
 
-    const fetchEvents = async () =>{
-        const val = await axios.get("http://127.0.0.1:3333/users");
-        console.log("sinnmn", val)
-        fetchUsers(val)
-        console.log("lopo",users)
-    }
+      const handleChange = () => {
+        // if(searchtype){
+        // setClothingType(value);
+           // console.log('it', searchtype);
+        // }        
+         clothingtype();              
+      }
+    
+      const axios = axiosLib.create({
+        baseURL: "http://127.0.0.1:3333"
+      });
+
+      const location = async () => {
+       // e.preventDefault()
+          console.log('commit', search);
+        //   console.log("run", form);
+          //let token = localStorage.getItem("token");
+          await axios
+            .get(`/consumers/searchby/${search}`, {
+            })
+            .then((response) => {
+              
+             //localStorage.setItem("token", token);
+              //setData(response.data);
+              console.log("search",response.data);
+            });
+       }
+
+       const clothingtype = async () => {
+        // e.preventDefault()
+           console.log('commit', searchtype);
+         //   console.log("run", form);
+           //let token = localStorage.getItem("token");
+           await axios
+             .get(`/posts/searchby/${searchtype}`, {
+             })
+             .then((response) => {
+               
+              //localStorage.setItem("token", token);
+               setData(response.data);
+               console.log("search",response.data);
+             });
+       }
+
+    //    if(searchtype){
+    //     clothingtype();
+    //     }
+
   return (
 <> 
     <div className='bg-[#FDF5EF] h-full'>
@@ -38,20 +95,48 @@ const Jobs = ({data}) => {
             <h2 className='text-justify font-bold text-lg'>Filter by</h2>
             <div className='flex gap-20 md:flex-col'>
                 <div>
-                    <h3 className='font-semibold'>Clothing Type</h3>
+                    <h3 className='font-semibold'>Clothing Type {searchtype}</h3>
                     <div className='flex flex-col'>
                         <div>
-                            <input type='checkbox' className=''/>
+                            {/* <input type='checkbox' className='' onChange={(e) => {
+                            setByLocation(e.target.value);
+                            clothingtype()
+                            }}/> */}
+                               <input
+                                    className="form-check-input"
+                                    type="checkbox"
+                                    name="searchtype"
+                                    checked={searchtype === "dress"}
+                                    onChange={() => {setClothingType("dress")}}
+                                />
                             <label className='ml-2'>Dress</label>
                         </div>
                         <div>
-                            <input type='checkbox' className=''/>
+                        <input
+                                    className="form-check-input"
+                                    type="checkbox"
+                                    name="searchtype"
+                                    checked={searchtype === "sari"}
+                                    onChange={() => {setClothingType("sari")}}
+                                />
                             <label className='ml-2'>Sari</label>
                         </div>
 
                         <div>
-                            <input type='checkbox' className=''/>
+                        <input
+                                    className="form-check-input"
+                                    type="checkbox"
+                                    name="searchtype"
+                                    checked={searchtype === "blouse"}
+                                    onChange={() => {setClothingType("blouse")}}
+                                />
                             <label className='ml-2'>Blouse</label>
+                        </div>
+
+                        <div>
+                            <button 
+                            className='text-[#664F39] hover:text-[#000] text-xl px-2 py-1 rounded text-decoration underline'
+                            onClick={handleChange}>search</button>
                         </div>
                     </div>
                 </div>
@@ -59,11 +144,17 @@ const Jobs = ({data}) => {
                 <div>
                     <h3 className='font-semibold'>Location</h3>
                     <div>
-                        <select id="cars" name="cars">
-                            <option value="volvo">Australia</option>
-                            <option value="saab">India</option>
-                            <option value="mercedes">Pakistan</option>
-                            <option value="audi">Beruit</option>
+                        <select id="location" name="location"
+                           value={search}
+                            onChange={(e) => {
+                            setByLocation(e.target.value);
+                            maker()
+                            }}
+                        >
+                            <option value="Australia">Australia</option>
+                            <option value="India">India</option>
+                            <option value="Pakistan">Pakistan</option>
+                            <option value="Beruit">Beruit</option>
                         </select>
                     </div>
                 </div>
@@ -73,17 +164,17 @@ const Jobs = ({data}) => {
          <div>
 
          <div className='my-5 md:mx-5 md:w-[70rem] bg-white md:text-2xl mb-10 rounded'>
-           <div className='flex md:mx-40'>
+           {/* <div className='flex md:mx-40'>
                 <input type="text" placeholder='search jobs' value="" name="search" className='bg-[#FDF5EF] border py-2 px-4
                 w-[50rem] m-3'/>
                 <div className='mt-2'>
                     <div className='h-10 mt-2 w-10 bg-[#664F39] rounded-full'></div>           
                     <div className='-mt-8 ml-1'><FiSearch size={30} className='text-white rotate-90'/></div>
                 </div>
-           </div>
+           </div> */}
            {/* <DisplayCard/> */}
            <div marginX="20" marginTop={10}>
-                {data.map((value, index) => {
+                {datas.map((value, index) => {
                     return <DisplayCard data={value} key={index}></DisplayCard>;
                 })}
             </div>
