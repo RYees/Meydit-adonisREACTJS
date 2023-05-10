@@ -11,8 +11,10 @@ const Post = () => {
     const [form, setForm] = useState({
         userId: '',
         clothingtype: '',
-        images: '',
+        polyimages: '',
         description: '', 
+        country:'',
+        status: '',
         budget: '',
        });
       
@@ -23,14 +25,16 @@ const Post = () => {
       const post = (e) => {
         e.preventDefault()
           console.log('commit');
-          let token = localStorage.getItem("isLoggedIn");
+          let token = localStorage.getItem("token");
           if (token) {
           axios
             .post("/posts", {
-                userId: 3,
+                userId: token.id,
                 clothingtype: types,
-                images: form.images,
+                polyimages: form.polyimages,
                 description: form.description,
+                country: form.country,
+                status: "open",
                 budget: form.budget
             })
             .then((response) => {
@@ -79,11 +83,11 @@ const Post = () => {
                 <FormField
                     labelName="Upload Images*"
                     placeholder="Different Angle Images"
-                    name="images"
+                    name="polyimages"
                     inputType='file'
                     //onChange={handleImage}
-                    value={form.images}
-                    handleChange={(e) => handleFormFieldChange('images', e)}
+                    value={form.polyimages}
+                    handleChange={(e) => handleFormFieldChange('polyimages', e)}
                 />
                 <div>
                  {image&& <img src={image} alt="photo" className='h-[5rem]'/>}
@@ -105,6 +109,15 @@ const Post = () => {
                     value={form.description}
                     handleChange={(e) => handleFormFieldChange('description', e)}
                   />
+                
+                <FormField 
+                    labelName="Country *"
+                    placeholder="Write your country"
+                    inputType='text'
+                    value={form.country}
+                    handleChange={(e) => handleFormFieldChange('country', e)}
+                />   
+
                 <FormField 
                     labelName="Budget *"
                     placeholder="Put the budget for the work"

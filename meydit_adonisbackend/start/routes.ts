@@ -33,7 +33,7 @@ Route.get('/auth/logout', 'AuthController.logout').as('auth.logout')
 // Route.get('/consumers/post/:id', 'PostsController.show').as('posts.singleuser')
 // Consumer data routes
 //Route.resource("consumers", "ConsumersController").as("consumers").apiOnly();
-Route.get('/consumers/searchby/:country', 'UsersController.searchBy').as('userslocation.search')
+//Route.get('/consumers/searchby/:country', 'UsersController.searchBy').as('userslocation.search')
 Route.resource("consumers", "UsersController")
 .as("users").apiOnly()
 // .middleware({
