@@ -43,6 +43,7 @@ Route.resource("consumers", "UsersController")
 // store: ["auth"],
 // destroy: ["auth"]
 //});
+Route.get('/posts/searchby', 'PostsController.searchBy').as('posts.search')
 Route.resource("posts", "PostsController")
 .as("userposts").apiOnly()
 // .middleware({

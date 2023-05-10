@@ -14,13 +14,16 @@ export default class Post extends BaseModel {
   public clothingtype: string
 
   @column()
-  public images: string
+  public polyimages: string
 
   @column()
   public description: string
 
   @column()
   public budget: number
+
+  @column()
+  public status: string
  
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

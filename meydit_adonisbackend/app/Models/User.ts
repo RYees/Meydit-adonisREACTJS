@@ -1,15 +1,15 @@
 import { DateTime } from 'luxon'
 import Hash from '@ioc:Adonis/Core/Hash'
 import { column, beforeSave, BaseModel, belongsTo, BelongsTo, HasOne, hasOne, HasMany, hasMany } from '@ioc:Adonis/Lucid/Orm'
-import Role from 'App/Models/Role'
+//import Role from 'App/Models/Role'
 import Post from './Post'
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
-  @column()
-  public roleId: number
+  // @column()
+  // public roleId: number
 
   @column()
   public firstname: string
@@ -51,8 +51,8 @@ export default class User extends BaseModel {
     }
   }
 
-  @belongsTo(() => Role)
-  public role: BelongsTo<typeof Role>
+  // @belongsTo(() => Role)
+  // public role: BelongsTo<typeof Role>
 
   @hasMany(() => Post)
   public posts: HasMany<typeof Post>

@@ -31,8 +31,8 @@ export default class CreateUserValidator {
       state: schema.string(),
       photo: schema.string.optional(),
       email: schema.string(),
-      password: schema.string(),
-      role_id: schema.number()
+      password: schema.string()
+      //role_id: schema.number()
   })
 
   /**

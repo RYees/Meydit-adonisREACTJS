@@ -1,6 +1,6 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import CreatePostValidator from 'App/Validators/CreatePostValidator';
-import Application from "@ioc:Adonis/Core/Application";
+//import Application from "@ioc:Adonis/Core/Application";
 import Post from 'App/Models/Post'
 
 export default class PostsController {
@@ -33,30 +33,50 @@ export default class PostsController {
   }
   }
 
-  public async store({response, request}: HttpContextContract) {
+  public async searchBy({response,params}) {
     try {
-      const py = request.file('images')
-      if (!py) {
-        //await payload.images.move(Application.tmpPath('uploads'))
-        return 'please upload file'
-      }
-      const path = await py.move(Application.tmpPath('uploads'))
-      console.log(path);
-        return path
+      const posts = await Post
+        .query()
+        .preload('quotes')
+        // .with('posts',(builder)=>{
+        //   builder.select('id','clothingtype')
+        // })
+    return posts;      
       
-        const payload = await request.validate(CreatePostValidator);
-        // payload.images = request.file('images')
+  } catch(error) {
+    return response.send(error);
+  }
+  }
 
-       
+  public async store({response, request}: HttpContextContract) {
+    const payload = await request.validate(CreatePostValidator);
+    try {
+      try{
+      const val = await Post.create(payload)
+      return val;
+      }
+      catch(error){
+        return response.send(error)
+      }
+      // const py = request.file('images')
+      // if (!py) {
+      //   //await payload.images.move(Application.tmpPath('uploads'))
+      //   return 'please upload file'
+      // }
+      // const path = await py.move(Application.tmpPath('uploads'))
+      // console.log(path);
+      //   return path
+      //const payload = await request.validate(CreateMakerValidator);      
+        // payload.images = request.file('images')
+              
         // const path = await py.move(Application.tmpPath('uploads'))
         // return path
         // const payload = await request.validate(CreateArticleValidator);
        // const data = await request.validate(payload)
       //  await payload.images.move(Application.publicPath("postimages"));
       //  payload.images = payload.images.fileName;
-        //await Post.create(payload)
-        //return response.send(payload);
-        return response.send(payload.images)
+       
+        //return response.send(payload.images)
       
       } catch(error) {
           return response.send(error);

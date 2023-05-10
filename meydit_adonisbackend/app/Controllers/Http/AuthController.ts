@@ -13,8 +13,8 @@ export default class AuthController {
                 state: schema.string(),
                 photo: schema.string(),
                 email: schema.string([rules.email(), rules.trim()]),
-                password: schema.string([rules.minLength(8)]),
-                role_id: schema.number()
+                password: schema.string([rules.minLength(8)])
+                //role_id: schema.number()
             })
             
             const data = await request.validate({ schema: userSchema })
