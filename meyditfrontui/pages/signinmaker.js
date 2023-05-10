@@ -1,7 +1,7 @@
 import React,{useState} from "react";
 import { CustomButton, FormField, Loader } from '../components';
 import axiosLib from "axios";
-const Signin = () => {
+const Signinmaker = () => {
     const [form, setForm] = useState({
         email: '',
         password: ''
@@ -17,7 +17,7 @@ const Signin = () => {
           console.log("run", form);
           //let token = localStorage.getItem("token");
           axios
-            .post("/auth/login", {
+            .post("/auth/maker/login", {
                 email: form.email,
                 password: form.password
                           })
@@ -32,9 +32,6 @@ const Signin = () => {
         setForm({ ...form, [fieldName]: e.target.value })
       }
     
-      const handleSubmit = async (e) => {
-        e.preventDefault();
-      }
   return (
     <>
     <div className="content bg-[#FDF5EF] h-sreen">
@@ -42,7 +39,7 @@ const Signin = () => {
             <form className="w-full flex flex-col gap-[30px]">
             <div className="md:flex md:flex-col gap-[40px] mx-64 my-36">
                 <FormField 
-                    labelName="Your Emial *"
+                    labelName="Your Email *"
                     placeholder="John Doe"
                     inputType="email"
                     value={form.firstname}
@@ -70,4 +67,4 @@ const Signin = () => {
     </>
   );
 };
-export default Signin;
+export default Signinmaker;

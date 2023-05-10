@@ -1,14 +1,14 @@
 import React from 'react'
 import Link from 'next/link'
 
-const Register = () => {
+const Login = () => {
   return (
     <div className='bg-[#FDF5EF] h-screen'>
          <h1 className='text-5xl flex justify-center'>
-            <strong className='mt-28 text-6xl'>Register as</strong>
+            <strong className='mt-28 text-6xl'>Login as</strong>
         </h1>
         <div className='md:flex md:flex-wrap md:mx-80 mx-24 gap-6 md:gap-36'>
-            <Link href="/signupconsumer" className='cursor-pointer'>
+            <Link href="/signinuser" className='cursor-pointer'>
             <button
                 className='focus:outline-none md:my-20 px-7 mt-7
                 transition duration-700 ease-in-out transform capitalize 
@@ -22,7 +22,7 @@ const Register = () => {
             </button>
             </Link>
 
-            <Link href="/signuptailor" className='cursor-pointer'>
+            <Link href="/signinmaker" className='cursor-pointer'>
             <button
                 className='md:w-80 px-20 focus:outline-none md:my-20
                 transition duration-700 ease-in-out transform capitalize 
@@ -41,4 +41,4 @@ const Register = () => {
   )
 }
 
-export default Register
+export default Login

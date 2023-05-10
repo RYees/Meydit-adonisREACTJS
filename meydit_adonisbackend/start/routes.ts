@@ -25,8 +25,12 @@ Route.get('/', async () => {
   return { hello: 'world' }
 });
 
-Route.post('/auth/consumers', 'AuthController.register').as('auth.register')
+Route.post('/auth/consumer/register', 'AuthController.register').as('auth.consumer.register')
+Route.post('/auth/maker/register', 'AuthMakerController.register').as('auth.maker.register')
 Route.post('/auth/login', 'AuthController.login').as('auth.login')
+
+Route.post('/auth/user/login', 'AuthController.login').as('auth.user.login')
+Route.post('/auth/maker/login', 'AuthMakerController.login').as('auth.maker.login')
 Route.get('/auth/logout', 'AuthController.logout').as('auth.logout')
 // Route.post('/consumers/post', 'PostsController.store').as('posts.user')
 // Route.get('/consumers/post/', 'PostsController.index').as('posts.users')

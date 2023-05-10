@@ -1,6 +1,8 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { schema, rules } from '@ioc:Adonis/Core/Validator'
+import Maker from 'App/Models/Maker'
 import User from 'App/Models/User'
+
 
 export default class AuthController {
     public async register({ request, response, auth }: HttpContextContract) {
@@ -40,6 +42,7 @@ export default class AuthController {
 
         return response.redirect().toPath('/')
     }
+    
 
     public async logout({ response, auth }: HttpContextContract) {
         await auth.logout()

@@ -25,7 +25,7 @@ const Signup = () => {
           console.log("run", form);
           //let token = localStorage.getItem("token");
           axios
-            .post("/auth/consumers", {
+            .post("/auth/consumer/register", {
                 firstname: form.firstname,
                 lastname: form.lastname,
                 phonenumber: form.phonenumber,

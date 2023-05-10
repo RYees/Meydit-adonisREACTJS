@@ -12,7 +12,7 @@ const Signout = () => {
             .post("/auth/logout")
             .then((response) => {
             console.log("islogout",response);
-            localStorage.removeItem("token");
+            localStorage.removeItem("isLoggedIn");
             });
       }
     

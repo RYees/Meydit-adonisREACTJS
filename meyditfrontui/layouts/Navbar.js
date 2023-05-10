@@ -13,12 +13,12 @@ const Navbar = () => {
             <Image src={logo} width={49} className='ml-5'/>
             </Link>
           </div>
-          <div><p className='font-outfit my-1 text-2xl'>Welcome, rehmet</p></div>
+          <div><p className='font-outfit my-1 text-2xl'>Welcome</p></div>
           <div className='mr-5 flex gap-5 text-xl transform underline'>
             <Link href="/jobs" className='cursor-pointer'>        
               Jobs       
             </Link>
-            <Link href="/signin" className='cursor-pointer'>        
+            <Link href="/login" className='cursor-pointer'>        
               sign<strong>in</strong>       
             </Link>
             <Link href="/register"
