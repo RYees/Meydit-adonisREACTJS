@@ -38,11 +38,7 @@ export default class PostsController {
       const posts = await Post
         .query()
         .preload('quotes')
-        // .with('posts',(builder)=>{
-        //   builder.select('id','clothingtype')
-        // })
-        .where('clothingtype', params.clothingtype)
-        //await Maker.query().where('id', params.id).update(payload);
+        .if(params.clothingtype, query => query.whereILike('clothingtype', `%${params.clothingtype}`))
     return posts;      
       
   } catch(error) {

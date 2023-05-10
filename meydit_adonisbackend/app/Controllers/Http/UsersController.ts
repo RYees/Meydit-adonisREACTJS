@@ -1,6 +1,7 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import User from 'App/Models/User'
 import CreateUserValidator from 'App/Validators/CreateUserValidator';
+import { schema, rules, CustomMessages } from '@ioc:Adonis/Core/Validator'
 
 export default class UsersController {
   public async index({}: HttpContextContract) {
@@ -25,11 +26,7 @@ export default class UsersController {
       const users = await User
         .query()
         .preload('posts')
-        // .with('posts',(builder)=>{
-        //   builder.select('id','clothingtype')
-        // })
-        .where('country', params.country)
-        //await Maker.query().where('id', params.id).update(payload);
+        .if(params.country, query => query.whereILike('country', `%${params.country}`))
     return users;      
       
   } catch(error) {

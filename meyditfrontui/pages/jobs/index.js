@@ -49,32 +49,21 @@ const Jobs = ({data}) => {
       });
 
       const location = async () => {
-       // e.preventDefault()
           console.log('commit', search);
-        //   console.log("run", form);
-          //let token = localStorage.getItem("token");
           await axios
             .get(`/consumers/searchby/${search}`, {
             })
             .then((response) => {
-              
-             //localStorage.setItem("token", token);
-              //setData(response.data);
               console.log("search",response.data);
             });
        }
 
        const clothingtype = async () => {
-        // e.preventDefault()
            console.log('commit', searchtype);
-         //   console.log("run", form);
-           //let token = localStorage.getItem("token");
            await axios
              .get(`/posts/searchby/${searchtype}`, {
              })
              .then((response) => {
-               
-              //localStorage.setItem("token", token);
                setData(response.data);
                console.log("search",response.data);
              });
