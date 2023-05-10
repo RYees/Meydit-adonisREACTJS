@@ -22,16 +22,6 @@ const Jobs = ({data}) => {
     const [searchtype, setClothingType] = useState("");
     const [search, setByLocation] = useState("Australia")
     const [datas, setData] = useState(data);
-    const [form, setForm] = useState({
-        firstname: '',
-        lastname: '',
-        phonenumber: '',
-        postcode: '', 
-        state: '',
-        photo: '',
-        email: '',
-        password: ''
-      });
 
       const handleChange = () => {    
          clothingtype();              

@@ -9,6 +9,7 @@ const Signup = () => {
         lastname: '',
         phonenumber: '',
         postcode: '', 
+        country: '',
         state: '',
         photo: '',
         email: '',
@@ -24,16 +25,17 @@ const Signup = () => {
           console.log("run", form);
           //let token = localStorage.getItem("token");
           axios
-            .post("/auth/register", {
+            .post("/auth/consumers", {
                 firstname: form.firstname,
                 lastname: form.lastname,
                 phonenumber: form.phonenumber,
                 postcode: form.postcode,
+                country: form.country,
                 state: form.state,
                 photo: form.photo,
                 email: form.email,
                 password: form.password,
-                role_id: 2
+                //role_id: 2
             })
             .then((response) => {
               response;
@@ -90,6 +92,14 @@ const Signup = () => {
                 <Image src={logo} alt="ad" className="w-[40px] h-[40px] object-contain"/>
                 <h4 className="font-epilogue font-bold text-[25px] text-white ml-[20px]">Wear Tailored Made Cloth and Be Stylish!</h4>
                 </div>
+
+                <FormField 
+                    labelName="Country *"
+                    placeholder="Write your country"
+                    inputType='text'
+                    value={form.country}
+                    handleChange={(e) => handleFormFieldChange('country', e)}
+                />   
 
                 <FormField 
                     labelName="State *"
