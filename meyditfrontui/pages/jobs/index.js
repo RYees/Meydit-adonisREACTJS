@@ -22,9 +22,6 @@ const Jobs = ({data}) => {
     const [searchtype, setClothingType] = useState("");
     const [search, setByLocation] = useState("Australia")
     const [datas, setData] = useState(data);
-    //setData(data);
-    // console.log("couch", data)
-    // console.log("londa", datas)
     const [form, setForm] = useState({
         firstname: '',
         lastname: '',
@@ -36,14 +33,14 @@ const Jobs = ({data}) => {
         password: ''
       });
 
-      const handleChange = () => {
-        // if(searchtype){
-        // setClothingType(value);
-           // console.log('it', searchtype);
-        // }        
+      const handleChange = () => {    
          clothingtype();              
       }
-    
+
+      const handleChangeLocation = () => {    
+        location();              
+     }
+       
       const axios = axiosLib.create({
         baseURL: "http://127.0.0.1:3333"
       });
@@ -51,27 +48,24 @@ const Jobs = ({data}) => {
       const location = async () => {
           console.log('commit', search);
           await axios
-            .get(`/consumers/searchby/${search}`, {
+            .get(`/posts/searchbycountry/${search}`, {
             })
             .then((response) => {
+              setData(response.data);
               console.log("search",response.data);
-            });
+            })
        }
 
        const clothingtype = async () => {
            console.log('commit', searchtype);
            await axios
-             .get(`/posts/searchby/${searchtype}`, {
+             .get(`/posts/searchbytype/${searchtype}`, {
              })
              .then((response) => {
                setData(response.data);
                console.log("search",response.data);
              });
        }
-
-    //    if(searchtype){
-    //     clothingtype();
-    //     }
 
   return (
 <> 
@@ -137,8 +131,7 @@ const Jobs = ({data}) => {
                            value={search}
                             onChange={(e) => {
                             setByLocation(e.target.value);
-                            maker()
-                            }}
+                        }}
                         >
                             <option value="Australia">Australia</option>
                             <option value="India">India</option>
@@ -146,6 +139,11 @@ const Jobs = ({data}) => {
                             <option value="Beruit">Beruit</option>
                         </select>
                     </div>
+                    <div>
+                            <button 
+                            className='text-[#664F39] hover:text-[#000] text-xl px-2 py-1 rounded text-decoration underline'
+                            onClick={handleChangeLocation}>search</button>
+                        </div>
                 </div>
             </div>
 
@@ -162,11 +160,18 @@ const Jobs = ({data}) => {
                 </div>
            </div> */}
            {/* <DisplayCard/> */}
-           <div marginX="20" marginTop={10}>
+           {datas.length == 0 ? (
+           <div marginX="20">
+            <p className='text-center py-10'>Can't find your request!</p>                
+            </div>
+            ): (
+                <div marginX="20" marginTop={10}>
                 {datas.map((value, index) => {
                     return <DisplayCard data={value} key={index}></DisplayCard>;
                 })}
-            </div>
+                           
+            </div>)
+            }
         </div>
 
      </div>

@@ -44,7 +44,8 @@ Route.resource("consumers", "UsersController")
 // store: ["auth"],
 // destroy: ["auth"]
 //});
-Route.get('/posts/searchby/:clothingtype', 'PostsController.searchBy').as('posts.search')
+Route.get('/posts/searchbycountry/:country', 'PostsController.searchBycountry').as('posts.searchcountry')
+Route.get('/posts/searchbytype/:clothingtype', 'PostsController.searchBytype').as('posts.searchtype')
 Route.resource("posts", "PostsController")
 .as("userposts").apiOnly()
 // .middleware({

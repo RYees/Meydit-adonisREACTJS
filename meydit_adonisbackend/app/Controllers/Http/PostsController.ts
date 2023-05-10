@@ -33,13 +33,29 @@ export default class PostsController {
   }
   }
 
-  public async searchBy({response,params}) {
+  public async searchBycountry({response, request}) {
     try {
+      const {country} = request.params();
       const posts = await Post
         .query()
         .preload('quotes')
-        .if(params.clothingtype, query => query.whereILike('clothingtype', `%${params.clothingtype}`))
-        .if(params.country, query => query.whereILike('country', `%${params.country}`))
+        //.if(clothingtype, query => query.whereILike('clothingtype', `%${clothingtype}`))
+        .if(country, query => query.whereILike('country', `%${country}`))
+    return posts;      
+      
+  } catch(error) {
+    return response.send(error);
+  }
+  }
+
+
+  public async searchBytype({response, request}) {
+    try {
+      const {clothingtype} = request.params();
+      const posts = await Post
+        .query()
+        .preload('quotes')
+        .if(clothingtype, query => query.whereILike('clothingtype', `%${clothingtype}`))
     return posts;      
       
   } catch(error) {

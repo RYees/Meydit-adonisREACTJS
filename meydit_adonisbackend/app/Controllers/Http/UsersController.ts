@@ -1,7 +1,7 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import User from 'App/Models/User'
 import CreateUserValidator from 'App/Validators/CreateUserValidator';
-import Post from 'App/Models/Post';
+// import Post from 'App/Models/Post';
 
 export default class UsersController {
   public async index({}: HttpContextContract) {
@@ -21,19 +21,19 @@ export default class UsersController {
     return user;
   }
 
-  public async searchBy({response,params}) {
-    try {
-      const users = await User
-        .query()
-        .preload('posts')
-        .if(params.country, query => query.whereILike('country', `%${params.country}`))
+  // public async searchBy({response,params}) {
+  //   try {
+  //     const users = await User
+  //       .query()
+  //       .preload('posts')
+  //       .if(params.country, query => query.whereILike('country', `%${params.country}`))
 
-    return users;      
+  //   return users;      
       
-  } catch(error) {
-    return response.send(error);
-  }
-  }
+  // } catch(error) {
+  //   return response.send(error);
+  // }
+  // }
 
 
   public async update({ request, response, params }) {
