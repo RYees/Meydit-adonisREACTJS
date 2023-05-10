@@ -1,7 +1,7 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import User from 'App/Models/User'
 import CreateUserValidator from 'App/Validators/CreateUserValidator';
-import { schema, rules, CustomMessages } from '@ioc:Adonis/Core/Validator'
+import Post from 'App/Models/Post';
 
 export default class UsersController {
   public async index({}: HttpContextContract) {
@@ -27,6 +27,7 @@ export default class UsersController {
         .query()
         .preload('posts')
         .if(params.country, query => query.whereILike('country', `%${params.country}`))
+
     return users;      
       
   } catch(error) {

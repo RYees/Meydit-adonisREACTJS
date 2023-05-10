@@ -39,6 +39,7 @@ export default class PostsController {
         .query()
         .preload('quotes')
         .if(params.clothingtype, query => query.whereILike('clothingtype', `%${params.clothingtype}`))
+        .if(params.country, query => query.whereILike('country', `%${params.country}`))
     return posts;      
       
   } catch(error) {

@@ -28,6 +28,7 @@ export default class CreatePostValidator {
     clothingtype: schema.string(),
     polyimages: schema.string.optional(),
     description: schema.string(),
+    country: schema.string(),
     status: schema.string(),
     budget: schema.number(),
     //images: schema.file(),

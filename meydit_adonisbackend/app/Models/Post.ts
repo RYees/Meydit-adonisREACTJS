@@ -20,6 +20,9 @@ export default class Post extends BaseModel {
   public description: string
 
   @column()
+  public country: string
+
+  @column()
   public budget: number
 
   @column()

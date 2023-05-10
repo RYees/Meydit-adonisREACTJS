@@ -10,6 +10,7 @@ export default class extends BaseSchema {
       table.string('clothingtype')
       table.string('polyimages')
       table.string('description')
+      table.string('country')
       table.string('budget') 
       table.string('status')
       /**
