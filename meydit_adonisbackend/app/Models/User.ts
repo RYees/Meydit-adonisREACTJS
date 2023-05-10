@@ -22,6 +22,9 @@ export default class User extends BaseModel {
 
   @column()
   public postcode: number
+  
+  @column()
+  public country: string
 
   @column()
   public state: string

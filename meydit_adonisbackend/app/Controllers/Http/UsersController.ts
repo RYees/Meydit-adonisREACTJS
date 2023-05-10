@@ -20,6 +20,24 @@ export default class UsersController {
     return user;
   }
 
+  public async searchBy({response,params}) {
+    try {
+      const users = await User
+        .query()
+        .preload('posts')
+        // .with('posts',(builder)=>{
+        //   builder.select('id','clothingtype')
+        // })
+        .where('country', params.country)
+        //await Maker.query().where('id', params.id).update(payload);
+    return users;      
+      
+  } catch(error) {
+    return response.send(error);
+  }
+  }
+
+
   public async update({ request, response, params }) {
       const payload = await request.validate(CreateUserValidator);
       await User.query().where('id', params.id).update(payload);

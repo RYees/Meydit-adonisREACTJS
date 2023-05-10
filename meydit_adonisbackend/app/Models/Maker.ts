@@ -23,6 +23,9 @@ export default class Maker extends BaseModel {
   public postcode: number
 
   @column()
+  public country: string
+  
+  @column()
   public state: string
 
   @column()

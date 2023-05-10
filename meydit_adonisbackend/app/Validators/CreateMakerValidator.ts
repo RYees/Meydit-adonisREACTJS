@@ -28,6 +28,7 @@ export default class CreateMakerValidator {
     lastname: schema.string(),
     phonenumber: schema.string(),
     postcode: schema.number(),
+    country: schema.string(),
     state: schema.string(),
     photo: schema.string.optional(),
     email: schema.string(),

@@ -33,6 +33,7 @@ Route.get('/auth/logout', 'AuthController.logout').as('auth.logout')
 // Route.get('/consumers/post/:id', 'PostsController.show').as('posts.singleuser')
 // Consumer data routes
 //Route.resource("consumers", "ConsumersController").as("consumers").apiOnly();
+Route.get('/consumers/searchby/:country', 'UsersController.searchBy').as('userslocation.search')
 Route.resource("consumers", "UsersController")
 .as("users").apiOnly()
 // .middleware({
@@ -43,7 +44,7 @@ Route.resource("consumers", "UsersController")
 // store: ["auth"],
 // destroy: ["auth"]
 //});
-Route.get('/posts/searchby', 'PostsController.searchBy').as('posts.search')
+Route.get('/posts/searchby/:clothingtype', 'PostsController.searchBy').as('posts.search')
 Route.resource("posts", "PostsController")
 .as("userposts").apiOnly()
 // .middleware({

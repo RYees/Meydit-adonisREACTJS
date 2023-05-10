@@ -11,6 +11,7 @@ export default class extends BaseSchema {
       table.string('lastname')
       table.string('phonenumber')
       table.integer('postcode')
+      table.string('country')
       table.string('state')
       table.string('photo')
       table.string('email', 255).notNullable().unique()

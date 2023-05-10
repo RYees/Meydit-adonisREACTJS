@@ -10,6 +10,7 @@ export default class AuthController {
                 lastname: schema.string(),
                 phonenumber: schema.string(),
                 postcode: schema.number(),
+                country: schema.string(),
                 state: schema.string(),
                 photo: schema.string(),
                 email: schema.string([rules.email(), rules.trim()]),

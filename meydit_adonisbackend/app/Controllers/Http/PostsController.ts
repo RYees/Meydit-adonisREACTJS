@@ -41,6 +41,8 @@ export default class PostsController {
         // .with('posts',(builder)=>{
         //   builder.select('id','clothingtype')
         // })
+        .where('clothingtype', params.clothingtype)
+        //await Maker.query().where('id', params.id).update(payload);
     return posts;      
       
   } catch(error) {
