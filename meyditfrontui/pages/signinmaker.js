@@ -23,8 +23,8 @@ const Signinmaker = () => {
                           })
             .then((response) => {
               response;
-              localStorage.setItem("isLoggedIn", response.data.guards.user);
-              console.log(response.data.guards.web.isLoggedIn);
+              localStorage.setItem("isLoggedIn", response.data.guards.maker.maker);
+              console.log(response.data.guards.maker.maker);
             });
       }
     

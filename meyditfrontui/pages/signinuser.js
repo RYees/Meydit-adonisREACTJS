@@ -13,8 +13,8 @@ const Signinuser = () => {
 
       const login = (e) => {
         e.preventDefault()
-          console.log('commit');
-          console.log("run", form);
+          // console.log('commit');
+          // console.log("run", form);
           //let token = localStorage.getItem("token");
           axios
             .post("/auth/user/login", {
@@ -23,8 +23,8 @@ const Signinuser = () => {
                           })
             .then((response) => {
               response;
-              localStorage.setItem("isLoggedIn", response.data.guards.user);
-              console.log(response.data.guards.web.isLoggedIn);
+              localStorage.setItem("isLoggedIn", response.data.guards.user.user);
+              console.log(response.data.guards.user.user);
             });
       }
     
