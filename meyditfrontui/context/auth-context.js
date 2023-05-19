@@ -8,26 +8,19 @@ export const AuthContext = React.createContext();
 export const AuthProvider = ({ children }) => {
   const router = useRouter();
   const [authState, setAuthState] = useState([]);
-  let isLoggedIn;
-  //!!window ? isLoggedIn = window.localStorage.getItem("isLoggedIn") : ""
-
-//   let isLoggedIn = localStorage.getItem("isLoggedIn");
   
   const isUserAuthenticated = () => {
+    // checks if the user is authenticated   
     if (typeof window !== "undefined") {
         const value = localStorage.getItem("isLoggedIn") || ""
         setAuthState(value)
         if(value){}
         else{
-          router.push("/");   
+          router.push("/login");   
         }
       
     } 
    };
-
-  useEffect(() => {
-    // checks if the user is authenticated   
-  }, []);
 
  return (
    <AuthContext.Provider
@@ -40,5 +33,3 @@ export const AuthProvider = ({ children }) => {
    </AuthContext.Provider>
  );
 };
-
-// export { AuthContext, AuthProvider };

@@ -1,12 +1,21 @@
-import React,{useState} from "react";
+import React,{useState, useContext} from "react";
 import { CustomButton, FormField, Loader } from '../components';
 import logo from '../public/images/logo.png'
 import Image from "next/image";
 import axiosLib from "axios";
-
-const Quote = (data) => {
-  //console.log("quote", data.data.id);
-    const [form, setForm] = useState({
+import { AuthContext } from '../context/auth-context';
+const Quote = (data) => {  
+  const {authState} = useContext(AuthContext);
+  //const tailordata = JSON.parse(authState);
+  const parseJson = (input) => {
+    try {
+      return JSON.parse(input);
+    } catch (error) {
+      return "error parsing input";
+    }
+  };
+  const taildata = parseJson(authState);
+  const [form, setForm] = useState({
         makerId: '',
         postId: '',
         price: '',
@@ -26,7 +35,7 @@ const Quote = (data) => {
                 price: form.price,
                 comments: form.comments,
                 email: form.email,
-                makerId: 1, // fecth from local storage
+                makerId: taildata.id, // fecth from local storage
                 postId: data.data.id
             })
             .then((response) => {
@@ -48,7 +57,7 @@ const Quote = (data) => {
     <>
     <div className="content bg-[#FDF5EF] h-full border">
         <div className="md:mx-56">
-           <h1 className="uppercase text-[#664F39] flex justify-center text-5xl">Send Quotation</h1>
+          <h1 className="uppercase text-[#664F39] flex justify-center text-5xl">Send Quotation</h1>
             <form onSubmit={quote} className="w-full  flex flex-col gap-[30px]">
                 <div className="flex flex-col gap-[40px] mt-16">
                 <FormField 

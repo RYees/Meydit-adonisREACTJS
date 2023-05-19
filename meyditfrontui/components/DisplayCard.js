@@ -24,7 +24,7 @@ const DisplayCard = (data) => {
                     <p className='underline cursor-pointer p-3'>
                        <small onClick={()=>{
                                      router.push({
-                                      pathname: `/jobs/${data.data.id}`,
+                                      pathname: `/jobs/${data.data}`,
                                       query: { data: JSON.stringify(data.data) }
                               });
                     }}
