@@ -3,18 +3,29 @@ import Link from 'next/link'
 import Image from 'next/image'
 import {FaDownload} from 'react-icons/fa'
 import Quote from './Quote'
-// import { useState } from "react";
+import { useState, useEffect, useContext } from "react";
 // import { items } from "../public/Items.json";
 // import { Carousel } from "react-bootstrap";
 import dress6 from '../public/images/dress6.png'
 //import "bootstrap/dist/css/bootstrap.min.css";
 //import styles from "../styles/Bootstrap.module.css";
 import { useRouter } from "next/router";
+import { AuthContext } from '../context/auth-context';
 
 const Details = () => {
   const router = useRouter();
+  const {isUserAuthenticated} = useContext(AuthContext);
+  //console.log("yours", authContext);
+  const [authState, setAuthState] = useState([]);  
   const data = JSON.parse(router.query.data);
-  //console.log("whydid",  data.quotes.length);
+  //let isLoggedIn = localStorage.getItem("isLoggedIn");
+  // setAuthState(isLoggedIn);
+  //console.log("secure", isLoggedIn);
+  useEffect(() => {
+    // checks if the user is authenticated
+    isUserAuthenticated()
+  }, []);
+
   return (
     <div className='bg-[#FDF5EF] h-full'>
        <div>

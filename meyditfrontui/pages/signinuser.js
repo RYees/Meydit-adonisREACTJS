@@ -23,8 +23,9 @@ const Signinuser = () => {
                           })
             .then((response) => {
               response;
-              localStorage.setItem("isLoggedIn", response.data.guards.user.user);
+              localStorage.setItem("isLoggedIn", JSON.stringify(response.data.guards.user.user));
               console.log(response.data.guards.user.user);
+              window.location.replace('/jobs');
             });
       }
     
@@ -47,7 +48,7 @@ const Signinuser = () => {
                 />
                 <FormField 
                     labelName="Your Password *"
-                    placeholder="John Doe"
+                    placeholder="your password"
                     inputType="password"
                     value={form.lastname}
                     handleChange={(e) => handleFormFieldChange('password', e)}

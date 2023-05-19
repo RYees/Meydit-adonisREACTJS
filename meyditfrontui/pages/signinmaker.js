@@ -14,18 +14,23 @@ const Signinmaker = () => {
       const login = (e) => {
         e.preventDefault()
           console.log('commit');
-          console.log("run", form);
-          //let token = localStorage.getItem("token");
+          console.log("loginmaker");
+          //let isLoggedIn = localStorage.getItem("isLoggedIn");
           axios
             .post("/auth/maker/login", {
                 email: form.email,
                 password: form.password
                           })
             .then((response) => {
-              response;
-              localStorage.setItem("isLoggedIn", response.data.guards.maker.maker);
-              console.log(response.data.guards.maker.maker);
-            });
+              let val  = [];
+              val.push(response.data.guards.maker.user);
+              localStorage.setItem("isLoggedIn", JSON.stringify(response.data.guards.maker.user));
+              window.location.replace('/jobs');
+              // console.log(val);
+            }).catch((error) => {
+              console.log("case",error);
+            })
+            ;
       }
     
       const handleFormFieldChange = (fieldName, e) => {
@@ -47,7 +52,7 @@ const Signinmaker = () => {
                 />
                 <FormField 
                     labelName="Your Password *"
-                    placeholder="John Doe"
+                    placeholder="your password"
                     inputType="password"
                     value={form.lastname}
                     handleChange={(e) => handleFormFieldChange('password', e)}

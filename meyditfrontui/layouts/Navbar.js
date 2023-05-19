@@ -3,7 +3,23 @@ import React, {useEffect} from 'react'
 import logo from '../public/images/logo.png'
 import Link from 'next/link'
 import { CgProfile } from 'react-icons/cg';
+import axiosLib from "axios";
 const Navbar = () => {
+
+  const axios = axiosLib.create({
+    baseURL: "http://127.0.0.1:3333"
+  });
+
+  const logout = (e) => {
+    e.preventDefault()
+       axios
+        .get("/auth/logout")
+        .then((response) => {
+        console.log("islogout",response);
+        localStorage.removeItem("isLoggedIn");
+        window.location.replace('/');
+        });
+  }
   return (
     <> 
     <div className=''>
@@ -25,9 +41,9 @@ const Navbar = () => {
                className='cursor-pointer'>        
               sign<strong>up</strong>       
             </Link>
-            <Link href="/"
+            <Link href="#"
                className='cursor-pointer'>        
-              < CgProfile size={35} className='my-1'/>   
+              < CgProfile size={35} className='my-1' onClick={logout}/>   
             </Link>
           </div>
        </div>
