@@ -151,11 +151,11 @@ const Jobs = ({data}) => {
            </div> */}
            {/* <DisplayCard/> */}
            {datas.length == 0 ? (
-           <div marginX="20">
+           <div marginx="20">
             <p className='text-center py-10'>Can't find your request!</p>                
             </div>
             ): (
-                <div marginX="20" marginTop={10}>
+                <div marginx="20" margintop={10}>
                 {datas.map((value, index) => {
                     return <DisplayCard data={value} key={index}></DisplayCard>;
                 })}

@@ -16,7 +16,7 @@ const DisplayCard = (data) => {
     <>
    <div className="content">
     <div className='md:my-16 flex flex-col gap-10 md:flex md:flex-row border border-[#664F39] border-opacity-10'>
-                <div><Image src={dress6}  alt='home-banner'  className='h-[35rem]'/></div>
+                <div><Image src={dress6} alt='home-banner'  className='h-[35rem]'/></div>
                 <div className='md:flex md:flex-col md:leading-10 md:max-w-xl'>
                     <p className='flex justify-center mb-3'><strong className='mr-2'>Quotes</strong>{data.data.quotes.length}</p>
                     <p className='font-semibold mb-3 p-3'>Description</p>

@@ -1,12 +1,9 @@
 import React,{useState, useContext} from "react";
 import { CustomButton, FormField, Loader } from '../components';
-import logo from '../public/images/logo.png'
-import Image from "next/image";
 import axiosLib from "axios";
 import { AuthContext } from '../context/auth-context';
 const Quote = (data) => {  
   const {authState} = useContext(AuthContext);
-  //const tailordata = JSON.parse(authState);
   const parseJson = (input) => {
     try {
       return JSON.parse(input);

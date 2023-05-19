@@ -6,13 +6,13 @@ export default function App({ Component, pageProps }) {
   return(
     // <CacheProvider>
       // <ChakraProvider>
-      
+      <AuthProvider>
         <Layout>
-          <AuthProvider>
+          
           <Component {...pageProps} />
-          </AuthProvider>
+          
         </Layout>
-      
+      </AuthProvider>
       // </ChakraProvider>
       
     // </CacheProvider>

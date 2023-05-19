@@ -11,7 +11,8 @@ import { AuthContext } from '../context/auth-context';
 
 const Details = () => {
   const router = useRouter();
-  const {isUserAuthenticated} = useContext(AuthContext);
+  const {authState,isUserAuthenticated} = useContext(AuthContext);
+ 
   let result;
   const parseJson = (input) => {
     try {
@@ -21,7 +22,8 @@ const Details = () => {
     }
   };
   const data = parseJson(router.query.data);
-  console.log("moshing", data);
+  const taildata = parseJson(authState);
+  console.log("moshing",taildata.amount);
 
   if (!data.quotes) {
     console.log("not found");
@@ -71,7 +73,9 @@ const Details = () => {
             </p>
         </div>
 
-        <Quote data={data.id}/>
+        {taildata.amount === undefined ?
+        null
+        :<Quote data={data.id}/>}
        </div>
     </div>
   )

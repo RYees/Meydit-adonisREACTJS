@@ -17,8 +17,7 @@ export const AuthProvider = ({ children }) => {
         if(value){}
         else{
           router.push("/login");   
-        }
-      
+        }      
     } 
    };
 
