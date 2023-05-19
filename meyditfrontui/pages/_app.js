@@ -7,10 +7,8 @@ export default function App({ Component, pageProps }) {
     // <CacheProvider>
       // <ChakraProvider>
       <AuthProvider>
-        <Layout>
-          
-          <Component {...pageProps} />
-          
+        <Layout>          
+          <Component {...pageProps} />          
         </Layout>
       </AuthProvider>
       // </ChakraProvider>

@@ -23,7 +23,7 @@ const Details = () => {
   };
   const data = parseJson(router.query.data);
   const taildata = parseJson(authState);
-  console.log("moshing",taildata.amount);
+  // console.log("moshing",taildata.amount);
 
   if (!data.quotes) {
     console.log("not found");

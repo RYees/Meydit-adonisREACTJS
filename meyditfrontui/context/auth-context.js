@@ -1,5 +1,5 @@
 // src/context/auth-context.js
-import React from "react";
+import React, { use } from "react";
 import { useState, useEffect} from "react";
 import { useRouter } from "next/router";
 export const AuthContext = React.createContext();
@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
   
   const isUserAuthenticated = () => {
     // checks if the user is authenticated   
-    if (typeof window !== "undefined") {
+   if(typeof window !== "undefined") {
         const value = localStorage.getItem("isLoggedIn") || ""
         setAuthState(value)
         if(value){}
@@ -20,6 +20,10 @@ export const AuthProvider = ({ children }) => {
         }      
     } 
    };
+
+   useEffect(() => {
+    isUserAuthenticated();
+   },[])
 
  return (
    <AuthContext.Provider
