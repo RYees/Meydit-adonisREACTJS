@@ -6,6 +6,7 @@ import Link from 'next/link'
 import axiosLib from "axios";
 import { useRouter } from "next/router";
 import { AuthContext } from '../../context/auth-context';
+
 const endpoint ='http://127.0.0.1:3333/posts';
 export async function getServerSideProps(){
     const res = await fetch(endpoint);
@@ -17,6 +18,7 @@ export async function getServerSideProps(){
     }
 }
 const Jobs = ({data}) => {
+    const router = useRouter();
     const [searchtype, setClothingType] = useState("");
     const [search, setByLocation] = useState("Australia")
     const [datas, setData] = useState(data);    
@@ -33,7 +35,7 @@ const Jobs = ({data}) => {
     // const value = localStorage.getItem("isLoggedIn") || ""
      const taildata = parseJson(authState);
 
-    //console.log("moshing", taildata.amount);
+    //console.log("moshing", data);
 
       const handleChange = () => {    
          clothingtype();              
@@ -68,15 +70,27 @@ const Jobs = ({data}) => {
               // console.log("search",response.data);
              });
        }
-
+//bg-[#664F39]
   return (
 <> 
     <div className='bg-[#FDF5EF] h-full'>
         {taildata.amount === undefined ?
-        <Link href="/post" className='cursor-pointer mt-10'>
-            <button className='text-xl text-white rounded bg-[#664F39] mx-3 my-4 p-4'>Post</button>
-        </Link>
-        : null }
+        <div>
+            <div className='cursor-pointer mt-10'>
+                <button 
+                    onClick={()=>{
+                        router.push({
+                        pathname: `/post/${taildata.id}`
+                        //query: { data: JSON.stringify(data.data) }
+                    })}}
+                    className='text-xl text-black underline rounded mx-3'>
+                    post
+                </button>
+            </div><br></br>
+            <Link href="/mypost" className='cursor-pointer mt-10'>
+                <button className='text-xl text-black underline rounded mx-3 '>myposts</button>
+            </Link>
+        </div> : null }
        <div className='md:flex md:justify-between md:flex-1 px-10'>
          <div className='md:my-36 md:leading-10'>
             <h2 className='text-justify font-bold text-lg'>Filter by</h2>

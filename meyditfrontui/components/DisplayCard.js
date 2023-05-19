@@ -1,12 +1,6 @@
 import React from "react";
 import Image from 'next/image'
-import dress1 from '../public/images/dress1.png'
-import dress2 from '../public/images/dress2.png'
-import dress3 from '../public/images/dress3.png'
-import dress4 from '../public/images/dress4.png'
-import dress5 from '../public/images/dress5.png'
 import dress6 from '../public/images/dress6.png'
-import Link from "next/link";
 import { useRouter } from "next/router";
 
 const DisplayCard = (data) => {

@@ -1,12 +1,10 @@
-import React,{useState, useContext} from "react";
-import { CustomButton, FormField, Loader } from '../components';
-import logo from '../public/images/logo.png'
+import React,{useState} from "react";
+import { CustomButton, FormField, Loader } from '../../components';
+import logo from '../../public/images/logo.png'
 import Image from "next/image";
 import axiosLib from "axios";
-import { AuthContext } from '../context/auth-context';
 
-const Post = () => {
-    const {authState} = useContext(AuthContext);
+const Po = () => {
     const [imageInput, setImageInput] = useState(null);
     const [image, setImage] = useState(null);
     const [types, setType] = useState("Dress")
@@ -19,16 +17,10 @@ const Post = () => {
         status: '',
         budget: '',
        });
+
+       
       
-       const parseJson = (input) => {
-        try {
-          return JSON.parse(input);
-        } catch (error) {
-          return "error parsing input";
-        }
-      };
-      const userdata = parseJson(authState);
-      const axios = axiosLib.create({
+       const axios = axiosLib.create({
         baseURL: "http://127.0.0.1:3333"
       });
 
@@ -39,7 +31,7 @@ const Post = () => {
           if (token) {
           axios
             .post("/posts", {
-                userId: userdata.id,
+                userId: token.id,
                 clothingtype: types,
                 polyimages: form.polyimages,
                 description: form.description,
@@ -151,4 +143,4 @@ const Post = () => {
     </>
   );
 };
-export default Post;
+export default Po;
