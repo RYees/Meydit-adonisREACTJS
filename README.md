@@ -1,7 +1,5 @@
 # Tailor-Clients-Connector
 
-![Ethereum-Blockchain](https://github.com/RYees/dapps-gps/blob/main/images/Screenshot%20from%202022-07-13%2016-08-18.png)
-
 # Table of content
 * [Overview](#overview)
 * [Introduction](#introduction)
