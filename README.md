@@ -1,4 +1,4 @@
-# Tailor-Clients-Connector
+# Tailor-Client-Connector
 
 # Table of content
 * [Overview](#overview)
